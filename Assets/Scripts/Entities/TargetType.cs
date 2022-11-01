@@ -5,6 +5,6 @@ namespace Entities
     [Flags]
     public enum TargetType
     {
-        Player, Enemy
+        Player = 1, Enemy = 2
     }
 }
