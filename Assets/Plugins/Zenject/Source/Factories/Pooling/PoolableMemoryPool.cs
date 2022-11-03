@@ -26,9 +26,9 @@ namespace Zenject
             item.OnDespawned();
         }
 
-        protected override void Reinitialize(TParam1 p1, TValue item)
+        protected override void Reinitialize(TParam1 reinitializeData, TValue item)
         {
-            item.OnSpawned(p1);
+            item.OnSpawned(reinitializeData);
         }
     }
 
@@ -74,9 +74,9 @@ namespace Zenject
             item.OnDespawned();
         }
 
-        protected override void Reinitialize(TParam1 p1, TParam2 p2, TParam3 p3, TParam4 p4, TValue item)
+        protected override void Reinitialize(TParam1 velocity, TParam2 damage, TParam3 p3, TParam4 p4, TValue item)
         {
-            item.OnSpawned(p1, p2, p3, p4);
+            item.OnSpawned(velocity, damage, p3, p4);
         }
     }
 
