@@ -7,5 +7,8 @@ namespace Weapons
     {
         [field:SerializeField] public WeaponType type { get; private set; }
         [field: SerializeField] public float reloadTime { get; private set; }
+        [field: SerializeField] public float bulletLiveTime { get; private set; }
+        [field: SerializeField] public float bulletSpeed { get; private set; }
+        [field: SerializeField] public float damage { get; private set; }
     }
 }

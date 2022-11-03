@@ -1,4 +1,5 @@
 using Entities;
+using Unity.VisualScripting;
 using UnityEngine;
 using Weapons.Bullets;
 using Zenject;
@@ -21,11 +22,12 @@ namespace Weapons
         protected override void PerformShoot(Vector2 startPos, Vector2 direction)
         {
             _bulletPool.Spawn(new Bullet.BulletReinitializingData() {
-                damage = 1f,
+                damage = weaponData.damage,
                 startPosition = startPos,
                 targetType = TargetType.Enemy,
-                velocity = direction,
-                poolSelf = _bulletPool
+                velocity = direction * weaponData.bulletSpeed,
+                poolSelf = _bulletPool,
+                liveTime = weaponData.bulletLiveTime
             });
         }
     }

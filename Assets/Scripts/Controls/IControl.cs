@@ -5,6 +5,10 @@ namespace Controls
 {
     public interface IControl
     {
-        public event Action<Vector2> onShoot;
+        event Action onShootStart;
+        event Action onShootProgress;
+        event Action onShootStop;
+        Vector3 moveDirection { get; }
+        Vector3 shootDirection { get; }
     }
 }
