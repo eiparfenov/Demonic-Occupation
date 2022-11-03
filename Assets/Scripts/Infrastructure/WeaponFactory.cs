@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Infrastructure
 {
-    public class WeaponFactory: IFactory<WeaponType ,Weapon>
+    public class WeaponFactory: IFactory<WeaponData ,Weapon>
     {
         private SingleFireballWeapon.Factory _singleFireballWeaponFactory;
 
@@ -14,12 +14,12 @@ namespace Infrastructure
             _singleFireballWeaponFactory = singleFireballWeaponFactory;
         }
 
-        public Weapon Create(WeaponType param)
+        public Weapon Create(WeaponData param)
         {
-            return param switch
+            return param.type switch
             {
                 WeaponType.Hit => null,
-                WeaponType.SingleFireBall => _singleFireballWeaponFactory.Create(),
+                WeaponType.SingleFireBall => _singleFireballWeaponFactory.Create(param),
                 _ => throw new ArgumentOutOfRangeException(nameof(param), param, null)
             };
         }

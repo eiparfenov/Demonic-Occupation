@@ -8,11 +8,12 @@ namespace Weapons
     public class SingleFireballWeapon: WeaponWithReloadAndSingleShot
     {
         public const string InjectionID = "Fireballs";
-        public new class Factory: PlaceholderFactory<SingleFireballWeapon>{}
+        public new class Factory: PlaceholderFactory<WeaponData, SingleFireballWeapon>{}
         
         private readonly Bullet.Pool _bulletPool;
+        
         [Inject]
-        public SingleFireballWeapon([Inject(Id = InjectionID)] WeaponData data,[Inject(Id = InjectionID)] Bullet.Pool bulletPool) : base(data)
+        public SingleFireballWeapon(WeaponData data,[Inject(Id = InjectionID)] Bullet.Pool bulletPool) : base(data)
         {
             _bulletPool = bulletPool;
         }

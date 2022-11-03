@@ -9,26 +9,19 @@ namespace GamePlayer
 {
     public class Player: IDisposable
     {
-        public class PlayerInstaller: Installer<PlayerInstaller>
-        {
-            public override void InstallBindings()
-            {
-                Container.Bind<Transform>().FromComponentOnRoot().AsSingle();
-                Container.Bind<Player>().AsSingle().NonLazy();
-            }
-        }
-        private Weapon.Factory _weaponFactory;
+        
+        private readonly Weapon.Factory _weaponFactory;
         private readonly Transform _transform;
         private readonly IControl _control;
         private Weapon _weapon;
 
-        public Player(Weapon.Factory weaponFactory, Transform transform, IControl control)
+        public Player(Weapon.Factory weaponFactory, Transform transform, IControl control, [Inject(Id = "PlayerFirstWeapon")]WeaponData firstWeaponData)
         {
             _weaponFactory = weaponFactory;
             _transform = transform;
             _control = control;
 
-            _weapon = weaponFactory.Create(WeaponType.SingleFireBall);
+            _weapon = _weaponFactory.Create(firstWeaponData);
             _control.onShoot += ControlOnShoot;
         }
 

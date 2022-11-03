@@ -6,7 +6,7 @@ namespace Weapons
 {
     public abstract class Weapon: IDisposable
     {
-        public class Factory: PlaceholderFactory<WeaponType, Weapon>{}
+        public class Factory: PlaceholderFactory<WeaponData, Weapon>{}
         protected WeaponData weaponData;
 
         public void ShootStart(Vector2 startPos, Vector2 direction)
