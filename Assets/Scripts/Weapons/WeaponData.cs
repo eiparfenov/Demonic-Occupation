@@ -10,5 +10,6 @@ namespace Weapons
         [field: SerializeField] public float bulletLiveTime { get; private set; }
         [field: SerializeField] public float bulletSpeed { get; private set; }
         [field: SerializeField] public float damage { get; private set; }
+        [field: SerializeField] public RuntimeAnimatorController fireballAnimation { get; private set; }
     }
 }

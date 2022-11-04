@@ -24,9 +24,11 @@ namespace Weapons.Bullets
             public TargetType targetType;
             public Pool poolSelf;
             public float liveTime;
+            public RuntimeAnimatorController animatorController;
         }
 
         [SerializeField] private Rigidbody2D rb;
+        [SerializeField] private Animator animator;
         private TargetType _targetType;
         private float _damage;
         private Pool _poolSelf;
@@ -34,11 +36,13 @@ namespace Weapons.Bullets
         
         private void ReInitialize(BulletReinitializingData data)
         {
+            animator.runtimeAnimatorController = data.animatorController;
             _targetType = data.targetType;
             _damage = data.damage;
             _poolSelf = data.poolSelf;
             
             transform.position = data.startPosition;
+            transform.rotation = Quaternion.Euler(0, 0, Vector3.SignedAngle(Vector3.up, data.velocity, Vector3.forward));
             rb.velocity = data.velocity;
 
             _liveTimeCancellationToken = new();

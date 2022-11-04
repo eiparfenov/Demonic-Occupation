@@ -27,7 +27,8 @@ namespace Weapons
                 targetType = TargetType.Enemy,
                 velocity = direction * weaponData.bulletSpeed,
                 poolSelf = _bulletPool,
-                liveTime = weaponData.bulletLiveTime
+                liveTime = weaponData.bulletLiveTime,
+                animatorController = weaponData.fireballAnimation
             });
         }
     }
