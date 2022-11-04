@@ -92,9 +92,9 @@ namespace Zenject.Tests.Bindings
 
             public class Pool : MemoryPool<string, Foo>
             {
-                protected override void Reinitialize(string value, Foo foo)
+                protected override void Reinitialize(string reinitializeData, Foo foo)
                 {
-                    foo.Value = value;
+                    foo.Value = reinitializeData;
                     foo.ResetCount++;
                 }
             }
