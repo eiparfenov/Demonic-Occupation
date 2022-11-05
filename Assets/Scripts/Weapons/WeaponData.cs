@@ -6,10 +6,15 @@ namespace Weapons
     public class WeaponData: ScriptableObject
     {
         [field:SerializeField] public WeaponType type { get; private set; }
+        [field: SerializeField] public float damage { get; private set; }
         [field: SerializeField] public float reloadTime { get; private set; }
+        [field: Space]
         [field: SerializeField] public float bulletLiveTime { get; private set; }
         [field: SerializeField] public float bulletSpeed { get; private set; }
-        [field: SerializeField] public float damage { get; private set; }
+        [field: SerializeField] public float spriteScale { get; private set; }
+        [field: SerializeField] public float colliderScale { get; private set; }
         [field: SerializeField] public RuntimeAnimatorController fireballAnimation { get; private set; }
+        [field: Space]
+        [field: SerializeField] public float meleeLength { get; private set; }
     }
 }

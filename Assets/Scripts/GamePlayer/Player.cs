@@ -1,5 +1,6 @@
 using System;
 using Controls;
+using Entities;
 using Infrastructure;
 using UnityEngine;
 using Weapons;
@@ -23,7 +24,7 @@ namespace GamePlayer
             _control = control;
             _data = playerData;
 
-            _weapon = _weaponFactory.Create(playerData.firstWeapon);
+            _weapon = _weaponFactory.Create(TargetType.Environment | TargetType.Enemy, playerData.firstWeapon);
             
             _control.onShootStart += ControlOnShootStart;
             _control.onShootProgress += ControlOnShootProgress;

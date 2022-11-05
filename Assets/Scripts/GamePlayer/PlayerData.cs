@@ -1,10 +1,11 @@
+using Entities;
 using UnityEngine;
 using Weapons;
 
 namespace GamePlayer
 {
     [CreateAssetMenu(menuName = "Demonic Occupation/Data/PlayerData", fileName = "PlayerData")]
-    public class PlayerData: ScriptableObject
+    public class PlayerData: ScriptableObject, IMovementData
     {
         [field: SerializeField] public WeaponData firstWeapon { get; private set; }
         [field: SerializeField] public float speed { get; private set; }

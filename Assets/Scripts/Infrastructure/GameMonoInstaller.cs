@@ -1,4 +1,5 @@
 using Controls;
+using Entities;
 using GamePlayer;
 using UnityEngine;
 using Weapons;
@@ -18,16 +19,17 @@ namespace Infrastructure
 
         private void InstallBulletPools()
         {
-            Container.BindMemoryPool<Bullet, Bullet.Pool>().
+            Container.BindMemoryPool<Fireball, Fireball.Pool>().
                 WithId(SingleFireballWeapon.InjectionID).
-                FromComponentInNewPrefabResource("Prefabs/Fireball").
+                FromSubContainerResolve().ByNewPrefabResourceInstaller<FireballInstaller>("Prefabs/Fireball").
                 UnderTransformGroup("Fireballs");
         }
 
         private void InstallWeaponsFactories()
         {
-            Container.BindFactory<WeaponData , SingleFireballWeapon, SingleFireballWeapon.Factory>();
-            Container.BindFactory<WeaponData, Weapon, Weapon.Factory>().FromFactory<WeaponFactory>();
+            Container.BindFactory<TargetType, WeaponData , MeleeWeapon, MeleeWeapon.Factory>();
+            Container.BindFactory<TargetType, WeaponData , SingleFireballWeapon, SingleFireballWeapon.Factory>();
+            Container.BindFactory<TargetType, WeaponData, Weapon, Weapon.Factory>().FromFactory<WeaponFactory>();
         }
         
         private void InstallControls()

@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Entities;
 using UnityEngine;
 
 namespace Weapons
@@ -13,7 +14,7 @@ namespace Weapons
         /// </summary>
         protected float reload;
 
-        protected WeaponWithReloadAndSingleShot(WeaponData data): base(data)
+        protected WeaponWithReloadAndSingleShot(TargetType targetType, WeaponData data): base(targetType, data)
         {
             reload = 1f;
             ProcessReloading(_objectIsAlive.Token);

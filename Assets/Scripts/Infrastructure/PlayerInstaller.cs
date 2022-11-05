@@ -8,9 +8,10 @@ namespace Infrastructure
     {
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<PlayerData>().FromResource("Data/PlayerData").AsSingle();
             Container.Bind<Transform>().FromComponentOnRoot().AsSingle();
             Container.Bind<Rigidbody2D>().FromComponentOnRoot().AsSingle();
-            Container.Bind<PlayerMovement>().FromNewComponentOnRoot().AsSingle().NonLazy();
+            Container.Bind<EntityMovement>().FromNewComponentOnRoot().AsSingle().NonLazy();
             Container.Bind<Player>().AsSingle().NonLazy();
         }
     }

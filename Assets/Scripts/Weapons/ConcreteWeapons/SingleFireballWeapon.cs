@@ -9,26 +9,30 @@ namespace Weapons
     public class SingleFireballWeapon: WeaponWithReloadAndSingleShot
     {
         public const string InjectionID = "Fireballs";
-        public new class Factory: PlaceholderFactory<WeaponData, SingleFireballWeapon>{}
+        public new class Factory: PlaceholderFactory<TargetType, WeaponData, SingleFireballWeapon>{}
         
-        private readonly Bullet.Pool _bulletPool;
+        private readonly Fireball.Pool _bulletPool;
         
         [Inject]
-        public SingleFireballWeapon(WeaponData data,[Inject(Id = InjectionID)] Bullet.Pool bulletPool) : base(data)
+        public SingleFireballWeapon(TargetType targetType, WeaponData data,[Inject(Id = InjectionID)] Fireball.Pool bulletPool) : base(targetType, data)
         {
             _bulletPool = bulletPool;
         }
 
         protected override void PerformShoot(Vector2 startPos, Vector2 direction)
         {
-            _bulletPool.Spawn(new Bullet.BulletReinitializingData() {
-                damage = weaponData.damage,
-                startPosition = startPos,
-                targetType = TargetType.Enemy,
+            _bulletPool.Spawn(new Fireball.FireballReinitializingData() {
                 velocity = direction * weaponData.bulletSpeed,
-                poolSelf = _bulletPool,
+                startPosition = startPos,
+                
+                damage = weaponData.damage,
+                targetType = TargetType.Enemy,
                 liveTime = weaponData.bulletLiveTime,
-                animatorController = weaponData.fireballAnimation
+                animatorController = weaponData.fireballAnimation,
+                spriteScale = weaponData.spriteScale,
+                colliderScale = weaponData.colliderScale,
+                
+                poolSelf = _bulletPool,
             });
         }
     }

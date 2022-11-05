@@ -1,26 +1,29 @@
 using System;
+using Entities;
 using Weapons;
 using Zenject;
 
 namespace Infrastructure
 {
-    public class WeaponFactory: IFactory<WeaponData ,Weapon>
+    public class WeaponFactory: IFactory<TargetType, WeaponData ,Weapon>
     {
         private SingleFireballWeapon.Factory _singleFireballWeaponFactory;
+        private MeleeWeapon.Factory _meleeWeaponFactory;
 
         [Inject]
-        public WeaponFactory(SingleFireballWeapon.Factory singleFireballWeaponFactory)
+        public WeaponFactory(SingleFireballWeapon.Factory singleFireballWeaponFactory, MeleeWeapon.Factory meleeWeaponFactory)
         {
             _singleFireballWeaponFactory = singleFireballWeaponFactory;
+            _meleeWeaponFactory = meleeWeaponFactory;
         }
 
-        public Weapon Create(WeaponData param)
+        public Weapon Create(TargetType targetType ,WeaponData data)
         {
-            return param.type switch
+            return data.type switch
             {
-                WeaponType.Hit => null,
-                WeaponType.SingleFireBall => _singleFireballWeaponFactory.Create(param),
-                _ => throw new ArgumentOutOfRangeException(nameof(param), param, null)
+                WeaponType.Melee => _meleeWeaponFactory.Create(targetType, data),
+                WeaponType.SingleFireball => _singleFireballWeaponFactory.Create(targetType, data),
+                _ => throw new ArgumentOutOfRangeException(nameof(data), data, null)
             };
         }
     }
