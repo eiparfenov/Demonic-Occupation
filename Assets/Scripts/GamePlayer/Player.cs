@@ -10,12 +10,13 @@ namespace GamePlayer
 {
     public class Player: IDisposable
     {
-        
         private readonly Weapon.Factory _weaponFactory;
         private readonly Transform _transform;
         private readonly IControl _control;
         private readonly PlayerData _data;
         private Weapon _weapon;
+
+        public Transform transform => _transform;
 
         public Player(Weapon.Factory weaponFactory, Transform transform, IControl control, PlayerData playerData)
         {
